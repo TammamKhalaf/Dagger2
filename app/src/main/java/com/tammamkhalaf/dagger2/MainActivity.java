@@ -10,18 +10,27 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    private AppComponent appComponent;
+
     @Inject
-    Coffee coffee;
+    Coffee coffee,coffee2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CoffeeComponent component = ((MainApplication) getApplication()).getCoffeeComponent();
-        component.inject(this);
+        AppComponent component = ((MainApplication) getApplication()).getAppComponent();
 
-        Log.d(TAG, "--> Coffee : "+coffee.getCoffeeCup()+" coffee no"+coffee);
+        CoffeeComponent coffeeComponent = DaggerCoffeeComponent.builder().milk(5).sugar(4).appComponent(component).build();
+        coffeeComponent.inject(this);
+
+        Log.d(TAG, "--> Coffee : "
+                +"\ncoffee 1: "+coffee+
+                 "\ncoffee 2: "+coffee2
+                +"\nriver for coffee 1 "+coffee.river+
+                 "\nriver for coffee 2 "+coffee2.river
+        );
 
     }
 }
