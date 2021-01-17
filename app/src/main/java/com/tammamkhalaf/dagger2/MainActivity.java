@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         AppComponent component = ((MainApplication) getApplication()).getAppComponent();
 
-        CoffeeComponent coffeeComponent = DaggerCoffeeComponent.builder().milk(5).sugar(4).appComponent(component).build();
+        CoffeeComponent coffeeComponent = component.getCoffeeComponentBuilder().milk(5).sugar(4).build();
         coffeeComponent.inject(this);
 
         Log.d(TAG, "--> Coffee : "
