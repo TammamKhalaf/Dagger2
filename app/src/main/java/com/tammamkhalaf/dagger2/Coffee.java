@@ -12,13 +12,16 @@ public class Coffee {
 
     River river;
 
+    int sugar;
+
     @Inject
-    public Coffee(River river) {
+    public Coffee(River river,int sugar) {
         this.river = river;
+        this.sugar = sugar;
     }
 
     public String getCoffeeCup(){
-        return farm.getBeans()+"+"+river.getWater();
+        return farm.getBeans()+"+"+river.getWater()+" sugar: "+sugar;
     }
 
     @Inject
