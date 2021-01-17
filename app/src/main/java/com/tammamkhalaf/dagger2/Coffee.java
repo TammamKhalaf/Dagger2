@@ -3,6 +3,7 @@ package com.tammamkhalaf.dagger2;
 import android.util.Log;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class Coffee {
     private static final String TAG = "Coffee";
@@ -14,14 +15,17 @@ public class Coffee {
 
     int sugar;
 
+    int milk;
+
     @Inject
-    public Coffee(River river,int sugar) {
+    public Coffee(River river,@Sugar int sugar,@Milk int milk) {
         this.river = river;
         this.sugar = sugar;
+        this.milk = milk;
     }
 
     public String getCoffeeCup(){
-        return farm.getBeans()+"+"+river.getWater()+" sugar: "+sugar;
+        return farm.getBeans()+"+"+river.getWater()+" sugar: "+sugar+" milk: "+milk;
     }
 
     @Inject
