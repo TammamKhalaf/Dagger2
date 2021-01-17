@@ -11,10 +11,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Farm farm = new Farm();
-        River river = new River();
-
-        Coffee coffee = new Coffee(farm,river);
+        CoffeeComponent component = DaggerCoffeeComponent.create();
+        component.getCoffee();
 
     }
 }
